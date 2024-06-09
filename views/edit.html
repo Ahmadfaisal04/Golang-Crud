@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Edit Data Pasien</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            color: #566787;
+            background: #f5f5f5;
+            font-family: 'Varela Round', sans-serif;
+            font-size: 13px;
+        }
+        .table-responsive {
+            margin: 30px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div id="editPasien" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="/update" method="POST">
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Data Pasien</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input id="idi"  type="number" name="id" value="" style="display: none">
+                    </div>
+                    <div class="form-group">
+                        <label>No Identitas</label>
+                        <input type="text" name="noIdentitas" class="form-control" autocomplete="off" value="{{ .pasien.NoIdentitas }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Nama</label>
+                        <input type="text" name="nama" class="form-control" autocomplete="off" value="{{ .pasien.Nama }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Jenis Kelamin</label>
+                        <select name="jenisKelamin" class="form-control" required>
+                            <option value="">Pilih Jenis Kelamin</option>
+                            <option value="P" {{ if eq .Pasien.JenisKelamin "P" }}selected{{ end }}>P</option>
+                            <option value="L" {{ if eq .Pasien.JenisKelamin "L" }}selected{{ end }}>L</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Alamat</label>
+                        <input type="text" name="alamat" class="form-control" autocomplete="off" value="{{ .pasien.Alamat }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label>No HP</label>
+                        <input type="text" name="noHP" class="form-control" autocomplete="off" value="{{ .pasien.NoHP }}" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="/" class="btn btn-default">Cancel</a>
+                    <input type="submit" class="btn btn-info" value="Save">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    let loadParam = () => {
+        let param = new URLSearchParams(window.location.search);
+        document.getElementById("idi").value = param.get("id");
+    };
+    window.onload = loadParam();
+    $(document).ready(function(){
+        $('#editPasien').modal('show');
+    });
+</script>
+
+</body>
+</html>

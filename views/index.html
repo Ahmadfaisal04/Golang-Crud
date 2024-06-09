@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CRUD Data Table Data Pasien</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../style/index.css">
+</head>
+<body>
+<div class="container">
+    <div class="table-responsive">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <h2>Data <b>Pasien</b></h2>
+                    </div>
+                    <div class="col-xs-6">
+                        <a href="/create" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Tambah Pasien</span></a>
+                    </div>
+                </div>
+            </div>
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>No Identitas</th>
+                    <th>Nama</th>
+                    <th>Jenis Kelamin</th>
+                    <th>Alamat</th>
+                    <th>No HP</th>
+                    <th>Aksi</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{ range .pasiens }}
+                <tr>
+                    </td>
+                    <td>{{ .NoIdentitas}}</td>
+                    <td>{{ .Nama}}</td>
+                    <td>{{ .JenisKelamin }}</td>
+                    <td>{{ .Alamat }}</td>
+                    <td>{{ .NoHP}}</td>
+                    <td>
+                        <a href="/update?id={{ .Id }}" class="edit"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                        <a href="/delete?id={{ .Id }}" class="delete"onclick="return confirm('Apakah kamu yakin ingin menghapus data ini?')"><i class="material-icons" title="Delete">&#xE872;</i></a>
+                    </td>
+                </tr>
+                {{end}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
